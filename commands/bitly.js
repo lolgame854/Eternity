@@ -24,6 +24,7 @@ return console.log(error.message);
     .setAuthor("Bitly")
     .addField("Votre lien original :", url)
     .addField("Votre lien racourci :", result)
+    .setFooter("Eternity © 2019 | by lolgame854")
     message.channel.send(embed2);
   }
 });

@@ -42,7 +42,7 @@ Request.get(achecksi, (error, response, body) => {
         .addField("MS :", "``-/-``")
         .addField("Mise a jour a :", timesiw)
         .setTimestamp()
-        .setFooter(client.user.username, client.user.displayAvatarURL)
+        .setFooter("Eternity © 2019 | by lolgame854")
         return info2.edit(embed)
    }
 const after1 = Date.now() - before1
@@ -54,7 +54,7 @@ const embed2 = new Discord.RichEmbed()
         .addField("MS :", `${after1}`)
         .addField("Mise a jour a :", timesiw)
         .setTimestamp()
-        .setFooter(client.user.username, client.user.displayAvatarURL)
+        .setFooter("Eternity © 2019 | by lolgame854")
         return info2.edit(embed2)
 });
 }

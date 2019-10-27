@@ -41,7 +41,7 @@ const embed = new Discord.RichEmbed()
         .addField("MS :", "``-/-``")
         .addField("Mise a jour a :", timeswm)
         .setTimestamp()
-        .setFooter(client.user.username, client.user.displayAvatarURL)
+        .setFooter("Eternity © 2019 | by lolgame854")
         return info3.edit(embed)
 }
 const embed2 = new Discord.RichEmbed()
@@ -52,7 +52,7 @@ const embed2 = new Discord.RichEmbed()
         .addField("MS :", `${after2}`)
         .addField("Mise a jour a :", timeswm)
         .setTimestamp()
-        .setFooter(client.user.username, client.user.displayAvatarURL)
+        .setFooter("Eternity © 2019 | by lolgame854")
         return info3.edit(embed2)
 });
 }

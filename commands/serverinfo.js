@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 module.exports.run = async (bot, message, args) => {
     const embed = new Discord.RichEmbed()
       .setColor("PURPLE")
-      .setAuthor(`Serveur info - ${message.guild.name} ${message.guild.iconURL}`)
+      .setAuthor(`Serveur info - ${message.guild.name}`)
       .addField("Nom :", message.guild.name)
       .addField("ID du serveur :", message.guild.id)
       .addField("Propriétaire :", message.guild.owner)

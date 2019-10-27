@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 module.exports.run = async (bot, message, args) => {
-
+    message.delete()
     const embed3 = new Discord.RichEmbed()
     .setColor("PURPLE")
     .setAuthor("CheckWeb")
@@ -20,7 +20,6 @@ module.exports.run = async (bot, message, args) => {
     const achecksi = args.join(" ");
 const namec = args[0];
 const namec2 = args[1]
-message.delete().catch(O_o=>{}); 
 if (!args[0]) {
 		return message.channel.send(embed3);
     }

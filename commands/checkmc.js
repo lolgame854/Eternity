@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 module.exports.run = async (bot, message, args) => {
-
+    message.delete()
     const embed3 = new Discord.RichEmbed()
     .setColor("PURPLE")
     .setAuthor("CheckMC")
@@ -24,7 +24,6 @@ module.exports.run = async (bot, message, args) => {
     const namemc = args[2];
     
     const portmc = args[1];
-message.delete().catch(O_o=>{}); 
 if (!args.length) {
 return message.channel.send(embed4);
 }

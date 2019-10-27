@@ -27,9 +27,14 @@ fs.readdir('./commands/', (err, files) => {
 
 bot.on('ready', async () => {
     console.log(`${bot.user.username} est en ligne !`)
-    bot.user.setStatus('online')
-    bot.user.setActivity("Besoin Aide ? => e!help")
-})
+    client.user.setPresence({
+        status: "online",
+        game: {
+          name: `Besoin d'aide ? => e!help`,
+          type: "WATCHING"
+        }
+      });
+    });
 
 bot.on('message', async message => {
     if(message.author.bot)return;

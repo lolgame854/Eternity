@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
     // User variables
     const created = formatDate(member.user.createdAt);
 
-    const embed = new RichEmbed()
+    const embed = new Discord.RichEmbed()
       .setFooter(member.displayName, member.user.displayAvatarURL)
       .setThumbnail(member.user.displayAvatarURL)
       .setColor(

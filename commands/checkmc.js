@@ -11,6 +11,11 @@ module.exports.run = async (bot, message, args) => {
     .setColor("PURPLE")
     .setAuthor("CheckMC")
     .setDescription("Merci d'indiquer l'adresse et le port du serveur minecraft en question.")
+
+    const embed5 = new Discord.RichEmbed()
+    .setColor("PURPLE")
+    .setAuthor("CheckMC")
+    .setDescription("Une erreur c'est produite...")
     const pinger = require('minecraft-pinger')
 
     var moment = require('moment');
@@ -24,8 +29,12 @@ module.exports.run = async (bot, message, args) => {
     const namemc = args[2];
     
     const portmc = args[1];
+    message.delete().catch(O_o=>{}); 
 if (!args.length) {
 return message.channel.send(embed4);
+}
+if(!args[3]){
+    return message.channel.send(embed5)
 }
 const info3 = await message.channel.send(embed3);
 const before2 = Date.now();

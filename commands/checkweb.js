@@ -20,6 +20,7 @@ module.exports.run = async (bot, message, args) => {
     const achecksi = args.join(" ");
 const namec = args[0];
 const namec2 = args[1]
+message.delete().catch(O_o=>{}); 
 if (!args[0]) {
 		return message.channel.send(embed3);
     }

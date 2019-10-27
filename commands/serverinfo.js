@@ -10,6 +10,7 @@ module.exports.run = async (bot, message, args) => {
       .addField("Nombre de joueur :", message.guild.memberCount)
       .addField("Nombre de role :", message.guild.roles.size)
       .setFooter("Eternity © 2019 | by lolgame854")
+      message.channel.send(embed)
 }
 
 module.exports.help = {

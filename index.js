@@ -27,7 +27,7 @@ fs.readdir('./commands/', (err, files) => {
 
 bot.on('ready', async () => {
     console.log(`${bot.user.username} est en ligne !`)
-    client.user.setPresence({
+    bot.user.setPresence({
         status: "online",
         game: {
           name: `Besoin d'aide ? => e!help`,

@@ -5,6 +5,7 @@ module.exports.run = async (bot, message, args) => {
 
 
     const embed = new Discord.RichEmbed()
+    .setColor("PURPLE")
     .setAuthor("Pong !")
     .addField("Temps de reaction :", `${msg.createdTimestamp - message.createdTimestamp}ms`)
     .addField("API latence est de :", `${Math.round(bot.ping)}ms`)

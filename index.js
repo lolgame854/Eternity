@@ -42,7 +42,7 @@ bot.on('message', async message => {
     messageAuthorIsSTAFF = false
 
 
-    let prefix = config.prefix;
+    const prefix = "e!";
     let messageArray = message.content.split(' ');
     let command = messageArray[0];
     let args = messageArray.slice(1);

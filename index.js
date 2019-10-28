@@ -5,7 +5,7 @@ const fs = require('fs')
 const bot = new Discord.Client()
 
 var maintenance = false // Si on redemarre le bot, il n'y a plus de maintenance
-var list_commandes = ["8ball", "aide", "avatar", "chat", "chien", "clear", "help", "mute", "ping", "prefix", "project", "say", "sayembed", "sondage", "unmute"] // Liste de toute les commandes du bot
+var list_commandes = ["ban","8ball", "aide", "avatar", "chat", "chien", "clear", "help", "mute", "ping", "project", "say", "sayembed", "sondage", "unmute"] // Liste de toute les commandes du bot
 var messageAuthorIsSTAFF = false // Si l'auteur de la commande est un membre du staff
 
 bot.commands = new Discord.Collection();
@@ -40,18 +40,9 @@ bot.on('message', async message => {
     if(message.author.bot)return;
     if(message.channel.type === 'dm') return;
     messageAuthorIsSTAFF = false
-    
 
 
-    let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
-
-    if(!prefixes[message.guild.id]){
-        prefixes[message.guild.id] = {
-            prefixes: config.prefix
-        }
-    }
-
-    let prefix = prefixes[message.guild.id].prefixes;
+    let prefix = config.prefix
     let messageArray = message.content.split(' ');
     let command = messageArray[0];
     let args = messageArray.slice(1);

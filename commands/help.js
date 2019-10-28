@@ -8,10 +8,10 @@ module.exports.run = async (bot, message, args) => {
     .setDescription("Les commandes avec [] sont en création ou en maintenance.")
     .addField(":page_with_curl: Commandes information", "e!help | e!sondage | [giveaway] | e!userinfo | e!serverinfo")
     .addField(":computer:  Commandes basic", "e!ping | e!say | e!sayembed")
-    .addField(":robot:  Commmdes pour le bot", "e!prefix | e!bot | [modifstatus] | [modifactivity]")
+    .addField(":robot:  Commmdes pour le bot", "e!bot | [modifstatus] | [modifactivity]")
     .addField(":tada: Commandes fun", "e!chien | e!chat | e!avatar | e!8ball | e!math")
     .addField(":hammer_pick: Utility", "e!checkweb | e!checkmc | e!bitly")
-    .addField(":oncoming_police_car: Admin", "[ban] | [kick] | e!mute | e!unmute | e!clear | [report]\n[raidmode] | [warn]")
+    .addField(":oncoming_police_car: Admin", "e!ban | [kick] | e!mute | e!unmute | e!clear | [report]\n[raidmode] | [warn]")
     .addField(":tools:  Createur", "e!project | e!aide | e!maintenance")
     .setFooter("Eternity © 2019 Un problème ? Demandes à lolgame854#3470 !")
     

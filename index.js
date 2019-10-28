@@ -1,117 +1,57 @@
-const config = require('./config.json')
-const Discord = require('discord.js')
-const fs = require('fs')
+const { Client, Collection } = require("discord.js");
+const { config } = require("dotenv");
+const fs = require("fs");
 
-const bot = new Discord.Client()
+const client = new Client({
+  disableEveryone: true
+});
 
-var maintenance = false // Si on redemarre le bot, il n'y a plus de maintenance
-var list_commandes = ["ban","8ball", "aide", "avatar", "chat", "chien", "clear", "help", "mute", "ping", "project", "say", "sayembed", "sondage", "unmute"] // Liste de toute les commandes du bot
-var messageAuthorIsSTAFF = false // Si l'auteur de la commande est un membre du staff
+client.commands = new Collection();
+client.aliases = new Collection();
 
-bot.commands = new Discord.Collection();
+client.categories = fs.readdirSync("./commands/");
 
-fs.readdir('./commands/', (err, files) => {
-    if(err) console.log(err);
+config({
+  path: __dirname + "/.env"
+});
 
-    let jsFile = files.filter(f => f.split('.').pop() === 'js');
-    if(jsFile.length <= 0){
-        console.log('Je ne trouve pas la commande.')
-        return;
+["command"].forEach(handler => {
+  require(`./handlers/${handler}`)(client);
+});
+
+client.on("ready", () => {
+  console.log(`Salut, ${client.user.username} est en ligne !`);
+
+  client.user.setPresence({
+    status: "online",
+    game: {
+      name: `Prefix => e!| ${client.guilds.size} serveurs`,
+      type: "WATCHING"
     }
+  });
+});
 
-    jsFile.forEach((f, i) => {
-        let props = require(`./commands/${f}`)
-        bot.commands.set(props.help.name, props);
-    })
-})
+client.on("message", async message => {
+  const prefix = "e!";
 
-bot.on('ready', async () => {
-    console.log(`${bot.user.username} est en ligne !`)
-    bot.user.setPresence({
-        status: "online",
-        game: {
-          name: `Besoin d'aide ? => et!help`,
-          type: "WATCHING"
-        }
-      });
-    });
+  if (message.author.bot) return;
+  if (!message.guild) return;
+  if (!message.content.startsWith(prefix)) return;
+  if (!message.member)
+    message.member = await message.guild.fetchMember(message);
 
-bot.on('message', async message => {
-    if(message.author.bot)return;
-    if(message.channel.type === 'dm') return;
-    messageAuthorIsSTAFF = false
+  const args = message.content
+    .slice(prefix.length)
+    .trim()
+    .split(/ +/g);
+  const cmd = args.shift().toLowerCase();
 
+  if (cmd.length === 0) return;
 
-    let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
+  let command = client.commands.get(cmd);
+  if (!command) command = client.commands.get(client.aliases.get(cmd));
 
-    if(!prefixes[message.guild.id]){
-        prefixes[message.guild.id] = {
-            prefixes: config.prefix
-        }
-    }
+  if (command) command.run(client, message, args);
+});
 
-    let prefix = prefixes[message.guild.id].prefixes;
-    let messageArray = message.content.split(' ');
-    let command = messageArray[0];
-    let args = messageArray.slice(1);
-
-    const main1 = new Discord.RichEmbed()
-    .setColor("PURPLE")
-    .setAuthor("Maintenance")
-    .setDescription("Le bot est actuellement en maintenance !")
-    .setFooter("Eternity © 2019 | by lolgame854")
-
-    const main2 = new Discord.RichEmbed()
-    .setColor("PURPLE")
-    .setAuthor("Maintenance")
-    .setDescription("Maintenance activé !")
-    .setFooter("Eternity © 2019 | by lolgame854")
-
-    const main3 = new Discord.RichEmbed()
-    .setColor("PURPLE")
-    .setAuthor("Maintenance")
-    .setDescription("Maintenance désactivé !")
-    .setFooter("Eternity © 2019 | by lolgame854")
-
-    const noperm = new Discord.RichEmbed()
-    .setColor("PURPLE")
-    .setAuthor("Maintenance")
-    .setDescription("Seul le createur peut mettre le bot en maintenance.")
-    .setFooter("Eternity © 2019 | by lolgame854")
-
-    if (message.author.id === "411817236332806165") messageAuthorIsSTAFF = true // ID du staff du bot
-
-    if (maintenance){
-        list_commandes.forEach(function(item, index, array) {
-            if (message.content.startsWith(prefix + item)){
-                if (!messageAuthorIsSTAFF) {
-                    message.channel.send(main1)
-                    maintenance = true
-                } 
-            }
-        });
-    }
-
-    if (!messageAuthorIsSTAFF && maintenance) return
-
-    if(message.content === prefix + "maintenance"){
-        if (message.author.id === "411817236332806165") {
-            if (maintenance){
-                maintenance = false
-                message.channel.send(main3)
-            } else {
-                maintenance = true
-                message.channel.send(main2)
-            } 
-        } else {
-            message.channel.send(noperm)
-        }
-    }
-
-    let commandFile = bot.commands.get(command.slice(prefix.length));
-    if(commandFile) commandFile.run(bot, message, args);
-
-
-
-})
-bot.login(config.token);
+client.login(process.env.TOKEN);

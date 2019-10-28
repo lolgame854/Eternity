@@ -88,7 +88,7 @@ module.exports.run = async (bot, message, args) => {
         .then(m => m.delete(5000));
     }
 
-    const embed = new Discord.RichEmbed()
+    const embed7 = new Discord.RichEmbed()
     .setColor("PURPLE")
       .setThumbnail(toBan.user.displayAvatarURL)
       .setFooter(message.member.displayName, message.author.displayAvatarURL)
@@ -113,7 +113,7 @@ module.exports.run = async (bot, message, args) => {
 
         toBan.ban(args.slice(1).join(" ")).catch(err => {
           if (err)
-          const embed7 = new Discord.RichEmbed()
+          const embed8 = new Discord.RichEmbed()
           .setColor("PURPLE")
     .setAuthor("Ban")
     .setDescription(`Eh bien ... le bannissement n'a pas fonctionné. Voici l'erreur ${err}.`)
@@ -124,7 +124,7 @@ module.exports.run = async (bot, message, args) => {
       } else if (emoji === "❌") {
         msg.delete();
 
-        const embed8 = new Discord.RichEmbed()
+        const embed9 = new Discord.RichEmbed()
         .setColor("PURPLE")
     .setAuthor("Ban")
     .setDescription(`bannissement annulée.`)

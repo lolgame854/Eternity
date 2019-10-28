@@ -30,7 +30,7 @@ bot.on('ready', async () => {
     bot.user.setPresence({
         status: "online",
         game: {
-          name: `Besoin d'aide ? => e!help`,
+          name: `Besoin d'aide ? => et!help`,
           type: "WATCHING"
         }
       });
@@ -42,7 +42,15 @@ bot.on('message', async message => {
     messageAuthorIsSTAFF = false
 
 
-    let prefix = config.prefix;
+    let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
+
+    if(!prefixes[message.guild.id]){
+        prefixes[message.guild.id] = {
+            prefixes: config.prefix
+        }
+    }
+
+    let prefix = prefixes[message.guild.id].prefixes;
     let messageArray = message.content.split(' ');
     let command = messageArray[0];
     let args = messageArray.slice(1);

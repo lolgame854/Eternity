@@ -113,14 +113,10 @@ module.exports.run = async (bot, message, args) => {
 
         toBan.ban(args.slice(1).join(" ")).catch(err => {
           if (err)
-          const embed8 = new Discord.RichEmbed()
-          .setColor("PURPLE")
-    .setAuthor("Ban")
-    .setDescription(`Eh bien ... le bannissement n'a pas fonctionné. Voici l'erreur ${err}.`)
-            return message.channel.send(embed7);
+            return message.channel.send(`Eh bien ... le bannissement n'a pas fonctionné. Voici l'erreur ${err}.`);
         });
 
-        logChannel.send(embed);
+        logChannel.send(embed7);
       } else if (emoji === "❌") {
         msg.delete();
 
@@ -129,7 +125,7 @@ module.exports.run = async (bot, message, args) => {
     .setAuthor("Ban")
     .setDescription(`bannissement annulée.`)
         message.channel
-          .send(embed8)
+          .send(embed9)
           .then(m => m.delete(10000));
       }
     });

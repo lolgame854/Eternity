@@ -13,14 +13,17 @@ module.exports.run = async (bot, message, args) => {
     let member = message.mentions.members.first();
 
     const embed = new Discord.RichEmbed()
+    .setAuthor("Mute")
     .setColor("PURPLE")
     .setDescription("L'utilisateur n'existe pas.")
 
     const embeb2 = new Discord.RichEmbed()
+    .setAuthor("Mute")
     .setColor("PURPLE")
     .setDescription("Vous ne pouvez pas mute ce membre.")
 
     const embed3 = new Discord.RichEmbed()
+    .setAuthor("Mute")
     .setColor("PURPLE")
     .setDescription("Je ne peux pas mute ce membre.")
 

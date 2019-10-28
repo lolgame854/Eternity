@@ -42,13 +42,10 @@ bot.on('message', async message => {
     messageAuthorIsSTAFF = false
 
 
-    const prefix = "e!";
+    let prefix = config.prefix;
     let messageArray = message.content.split(' ');
     let command = messageArray[0];
-    const args = message.content
-    .slice(prefix.length)
-    .trim()
-    .split(/ +/g);
+    let args = messageArray.slice(1);
 
     const main1 = new Discord.RichEmbed()
     .setColor("PURPLE")

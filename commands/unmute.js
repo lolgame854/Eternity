@@ -14,21 +14,24 @@ module.exports.run = async (bot, message, args) => {
 
     const embed = new Discord.RichEmbed()
     .setColor("PURPLE")
+    .setAuthor("Unmute")
     .setDescription("L'utilisateur n'existe pas.")
 
     const embeb2 = new Discord.RichEmbed()
     .setColor("PURPLE")
+    .setAuthor("Unmute")
     .setDescription("Vous ne pouvez pas unmute ce membre.")
 
     const embed3 = new Discord.RichEmbed()
     .setColor("PURPLE")
+    .setAuthor("Unmute")
     .setDescription("Je ne peux pas unmute ce membre.")
 
     if (!member) return message.channel.send(embed).then(m => m.delete(3000))
 
     const embed4 = new Discord.RichEmbed()
     .setColor("PURPLE")
-    .setTitle("Muted")
+    .setTitle("Unmute")
     .setDescription(`${member} à bien été unmute ! :white_check_mark:`)
     .setFooter("Eternity © 2019 | by lolgame854")
 

@@ -13,7 +13,7 @@ bot.commands = new Discord.Collection();
 fs.readdir('./commands/', (err, files) => {
     if(err) console.log(err);
 
-    let jsFile = files.filter(f => f.split('.').pop() == 'js');
+    let jsFile = files.filter(f => f.split('.').pop() === 'js');
     if(jsFile.length <= 0){
         console.log('Je ne trouve pas la commande.')
         return;
@@ -42,7 +42,7 @@ bot.on('message', async message => {
     messageAuthorIsSTAFF = false
 
 
-    let prefix = config.prefix
+    let prefix = config.prefix;
     let messageArray = message.content.split(' ');
     let command = messageArray[0];
     let args = messageArray.slice(1);
@@ -101,7 +101,7 @@ bot.on('message', async message => {
     }
 
     let commandFile = bot.commands.get(command.slice(prefix.length));
-    if(commandFile) commandFile.run(bot, message, args)
+    if(commandFile) commandFile.run(bot, message, args);
 
 
 

@@ -88,7 +88,7 @@ module.exports.run = async (bot, message, args) => {
         .then(m => m.delete(5000));
     }
 
-    const embed = new RichEmbed()
+    const embed = new Discord.RichEmbed()
     .setColor("PURPLE")
       .setThumbnail(toBan.user.displayAvatarURL)
       .setFooter(message.member.displayName, message.author.displayAvatarURL)
@@ -97,7 +97,7 @@ module.exports.run = async (bot, message, args) => {
             **> Banni par:** ${message.member} (${message.member.id})
             **> Raison:** ${args.slice(1).join(" ")}`);
 
-    const promptEmbed = new RichEmbed()
+    const promptEmbed = new Discord.RichEmbed()
     .setColor("PURPLE")
       .setAuthor(`Cette vérification devient invalide après 10s`)
       .setDescription(`Voulez-vous bannir ${toBan}?`);
